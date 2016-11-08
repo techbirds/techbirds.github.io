@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>浅谈 HTTP1.x 与 HTTPS | 踏心</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">浅谈 HTTP1.x 与 HTTPS</h1><a id="logo" href="/.">踏心</a><p class="description">主要用于记录学习前端相关的重构、架构、算法和设计等方面的笔记</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">浅谈 HTTP1.x 与 HTTPS</h1><div class="post-meta">Nov 8, 2016<span> | </span><span class="category"><a href="/categories/Http/">Http</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><a data-thread-key="2016/11/08/浅谈-HTTP1-x-VS-HTTPS/" href="/2016/11/08/浅谈-HTTP1-x-VS-HTTPS/#comments" class="ds-thread-count"></a><div class="post-content"><h2 id="Http1-x"><a href="#Http1-x" class="headerlink" title="Http1.x"></a>Http1.x</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>无状态，可减轻服务器内存消耗和cpu计算处理，可处理更多请求</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>通信的信息明文(默认不对信息加密)</li>
+<li>通信双方的身份不会验证</li>
+<li>报文的完整性不能保证</li>
+</ul>
+<blockquote>
+<p>那问题来了，如何解决上面的问题？</p>
+</blockquote>
+<h4 id="通信的信息明文-默认不对信息加密"><a href="#通信的信息明文-默认不对信息加密" class="headerlink" title="通信的信息明文(默认不对信息加密)"></a>通信的信息明文(默认不对信息加密)</h4><p>缺点很显然就是不够安全</p>
+<ul>
+<li><p>手段一：SSL(Secure Socket Layer安全套接层) / TLS(Transport Layer Security安全层传输协议)  + Http =&gt; Https</p>
+<p>  根本上解决通信信息明文问题，有点类似隧道的意思，提供了新的通信安全线路，所以可以放心传输。</p>
+</li>
+<li><p>手段二：手动信息内容加密</p>
+<p>  报文头部肯定无法加密的，只能对报文主体加密，虽然这种方式可以起到信息保护的作用，但是你无法防止信息被篡改。</p>
+</li>
+</ul>
+<h4 id="通信双方的身份不会验证"><a href="#通信双方的身份不会验证" class="headerlink" title="通信双方的身份不会验证"></a>通信双方的身份不会验证</h4><p>这里的身份验证更用户身份验证是两码事，说通俗点就是服务器谁的请求都接收，并且都会正常响应(Dos攻击)。客户端同样会接收任何响应。</p>
+<ul>
+<li><p>唯一手段：通过证书来实现验证(SSL) + Http =&gt; Https</p>
+<p>  这个证书是第三方颁布的，也就说每次通信之前必须相互验证彼此的证书是否是有效。</p>
+<p>  这里会谈及两种加密解密思路：使用一把密钥的共享密钥(对称)和使用两把密钥的公开加密(非对称)。</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>SSL最终选择的公开加密，为什么？</strong></p>
+<ul>
+<li>对称加密：使用同一把密钥进行加密和解密，但问题在于密钥的安全性很难保证，尤其是在网络上对密钥进行传输太危险了。</li>
+<li><p>对称加密：加密的密钥可以任意公开，随你给谁，但是解密的密钥只有服务器才有，这基本上解决了对称加密的安全隐患。<br>但是使用非对称加密会有两个问题：</p>
+<ul>
+<li><p>公开密钥加密比共享密钥慢     </p>
+<p>  公开密钥和共享密钥一起组合使用。先用公开密钥来传输共享密钥，然后通过共享密钥进行身份验证。</p>
+</li>
+<li><p>公开密钥到底是不是你所访问服务器站点颁布的，万一不是。</p>
+<p>  为此有个中介(数字证书认证机构)介入，即服务器端会向其提出公开密钥的申请，中介会对公开密钥加签名处理(数字证书)。这个数字证书需要安装到客户端，那么客户端会认为：此证书是可靠的，因为是CA颁布的，服务器的公开密钥是合法的。</p>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<div>    
+
+<blockquote>
+<p><strong> 那常规的https是如何配置的？</strong></p>
+<p>中介不介入，https如何配置？ Https配置</p>
+<p>中介接入，https如何配置？ 数字证书 + Https配</p>
+<p>猛戳 <a href="https://aotu.io/notes/2016/08/16/nginx-https/" target="_blank" rel="external">Nginx 配置 HTTPS 服务器 + 数字证书</a><br>注意：</p>
+<ul>
+<li><p>数字证书会自动发送给访问服务器站点的客户端。</p>
+</li>
+<li><p>那中国银行和支付宝为何需要手动安装？是数字证书吗？她跟上面的数字证书是同一个概念吗？</p>
+</li>
+</ul>
+</blockquote>
+<h4 id="报文的完整性不能保证"><a href="#报文的完整性不能保证" class="headerlink" title="报文的完整性不能保证"></a>报文的完整性不能保证</h4><ul>
+<li><p>手段一：对下载文件进行md5和sha-1等散列值校验的方法来确认信息未被篡改</p>
+<p>  也不能保证百分百未被篡改。</p>
+<p>  流程通常是这样的，就是下载站点会公布对下载文件的md5值，所以文件内容如果不改变的话，md5值是一致的。<br>  所以需要用户自己通过工具验证文件的md5和官方是否一致。</p>
+<p>  但是也有隐患，万一官方显示的md5值被篡改过了呢，那你怎么保证文件没有被改变过呢。</p>
+</li>
+<li><p>手段二： Https(不解释)</p>
+</li>
+</ul>
+<h2 id="Https"><a href="#Https" class="headerlink" title="Https"></a>Https</h2><h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>加密</li>
+<li>认证</li>
+<li>完整性</li>
+</ul>
+<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>要钱(数字证书)</li>
+<li>比http慢，更耗服务器资源</li>
+</ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><p><a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html" target="_blank" rel="external">SSL/TLS协议运行机制的概述</a></p>
+</div></div><script type="text/javascript" src="/js/share.js?v=1.0.0" async></script><a data-url="http://techbirds.wang/2016/11/08/浅谈-HTTP1-x-VS-HTTPS/" data-id="civ92twbv000wzbxdbzhatld3" class="article-share-link">分享到</a><div class="tags"><a href="/tags/Http1-x/">Http1.x</a><a href="/tags/Https/">Https</a></div><div class="post-nav"><a href="/2016/11/02/Nicholas-C-Zakas的职业建议/" class="next">Nicholas C. Zakas的职业建议</a></div><div data-thread-key="2016/11/08/浅谈-HTTP1-x-VS-HTTPS/" data-title="浅谈 HTTP1.x 与 HTTPS" data-url="http://techbirds.wang/2016/11/08/浅谈-HTTP1-x-VS-HTTPS/" class="ds-share flat"><div class="ds-share-inline"><ul class="ds-share-icons-16"><li data-toggle="ds-share-icons-more"><a href="javascript:void(0);" class="ds-more">分享到：</a></li><li><a href="javascript:void(0);" data-service="weibo" class="ds-weibo">微博</a></li><li><a href="javascript:void(0);" data-service="qzone" class="ds-qzone">QQ空间</a></li><li><a href="javascript:void(0);" data-service="qqt" class="ds-qqt">腾讯微博</a></li><li><a href="javascript:void(0);" data-service="wechat" class="ds-wechat">微信</a></li></ul><div class="ds-share-icons-more"></div></div></div><div data-thread-key="2016/11/08/浅谈-HTTP1-x-VS-HTTPS/" data-title="浅谈 HTTP1.x 与 HTTPS" data-url="http://techbirds.wang/2016/11/08/浅谈-HTTP1-x-VS-HTTPS/" data-author-key="1" class="ds-thread"></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Http/">Http</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/码农感悟/">码农感悟</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/码农感悟/" style="font-size: 15px;">码农感悟</a> <a href="/tags/float/" style="font-size: 15px;">float</a> <a href="/tags/clear/" style="font-size: 15px;">clear</a> <a href="/tags/BFC/" style="font-size: 15px;">BFC</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/Http1-x/" style="font-size: 15px;">Http1.x</a> <a href="/tags/Https/" style="font-size: 15px;">Https</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.zhangxinxu.com/" title="张鑫旭" target="_blank">张鑫旭</a><ul></ul><a href="http://www.ruanyifeng.com/blog/" title="阮一峰" target="_blank">阮一峰</a><ul></ul><a href="http://blog.cssforest.org/" title="鬼哥" target="_blank">鬼哥</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">  Copyright © 2015-2016 techbirds.wang </div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=1.0.0"><script>var duoshuoQuery = {short_name:'techbirds-wang'};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
