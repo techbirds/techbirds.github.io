@@ -1,0 +1,195 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>掌握ES6的语法糖 | 踏心</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">掌握ES6的语法糖</h1><a id="logo" href="/.">踏心</a><p class="description">主要用于记录学习前端相关的重构、架构、算法和设计等方面的笔记</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">掌握ES6的语法糖</h1><div class="post-meta">Nov 30, 2016<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><a data-thread-key="2016/11/30/掌握ES6的语法糖/" href="/2016/11/30/掌握ES6的语法糖/#comments" class="ds-thread-count"></a><div class="post-content"><h2 id="语法糖列表"><a href="#语法糖列表" class="headerlink" title="语法糖列表"></a>语法糖列表</h2><ul>
+<li>箭头函数(Arrow Functions)</li>
+<li>块级作用域功能(Block Scoping Functions)</li>
+<li>模板字符串(Template Literals)</li>
+<li>计算属性名称(Computed Property Names)</li>
+<li>解构赋值(Destructuring Assignment)</li>
+<li>参数默认值(Default Parameters)</li>
+<li>迭代器(Iterators And For-Of)</li>
+<li>类(Classes)</li>
+<li>模块(Module)</li>
+<li>数值字面量(Numeric Literals)类型增加</li>
+<li>语法糖之字面量创建对象(Object Initializer Shorthand)</li>
+<li>语法糖之函数参数个数不确定(Rest Parameters)</li>
+<li>语法糖之数组自动拆解为实参列表(Spread Operator)</li>
+<li>类数组对象转数组(Array-like object to array)</li>
+</ul>
+<h2 id="箭头函数-Arrow-Functions"><a href="#箭头函数-Arrow-Functions" class="headerlink" title="箭头函数(Arrow Functions)"></a>箭头函数(Arrow Functions)</h2><h3 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h3><pre><code>为了更爽的编写匿名函数
+</code></pre><h3 id="语法糖"><a href="#语法糖" class="headerlink" title="语法糖"></a>语法糖</h3><pre><code>left =&gt; right
+</code></pre><ul>
+<li>无参数 例如 left: ()</li>
+<li>有参数 例如 left: (x,y)</li>
+<li>有返回值 例如 right:无括号</li>
+<li>无返回值 例如 right:{}</li>
+</ul>
+<h3 id="深入"><a href="#深入" class="headerlink" title="深入"></a>深入</h3><ul>
+<li>注意this的使用</li>
+</ul>
+<h2 id="块级作用域功能-Block-Scoping-Functions"><a href="#块级作用域功能-Block-Scoping-Functions" class="headerlink" title="块级作用域功能(Block Scoping Functions)"></a>块级作用域功能(Block Scoping Functions)</h2><h3 id="核心-1"><a href="#核心-1" class="headerlink" title="核心"></a>核心</h3><pre><code>使用for、if等借助let/const可以轻松营造块级作用域，使用let/const定义的变量在代码维护上更为规范。
+</code></pre><h3 id="语法糖-1"><a href="#语法糖-1" class="headerlink" title="语法糖"></a>语法糖</h3><pre><code>忽略
+</code></pre><h3 id="深入-1"><a href="#深入-1" class="headerlink" title="深入"></a>深入</h3><ul>
+<li>使用块级作用域的意义</li>
+</ul>
+<h2 id="模板字符串-Template-Literals"><a href="#模板字符串-Template-Literals" class="headerlink" title="模板字符串(Template Literals)"></a>模板字符串(Template Literals)</h2><h3 id="核心-2"><a href="#核心-2" class="headerlink" title="核心"></a>核心</h3><ul>
+<li>仍然是字符串</li>
+<li>可定义多行字符串</li>
+<li>在字符串中嵌入变量、函数等</li>
+</ul>
+<h3 id="语法糖-2"><a href="#语法糖-2" class="headerlink" title="语法糖"></a>语法糖</h3><p><a href="http://es6.ruanyifeng.com/#docs/string%23%E6%A8%A1%E6%9D%BF%E5%AD%97%E7%AC%A6%E4%B8%B2" target="_blank" rel="external">参考</a></p>
+<h3 id="深入-2"><a href="#深入-2" class="headerlink" title="深入"></a>深入</h3><ul>
+<li>应用场景思考</li>
+</ul>
+<h2 id="计算属性名称-Computed-Property-Names"><a href="#计算属性名称-Computed-Property-Names" class="headerlink" title="计算属性名称(Computed Property Names)"></a>计算属性名称(Computed Property Names)</h2><h3 id="核心-3"><a href="#核心-3" class="headerlink" title="核心"></a>核心</h3><pre><code>对象的属性名称终于可以通过表达式来定义了
+</code></pre><h3 id="语法糖-3"><a href="#语法糖-3" class="headerlink" title="语法糖"></a>语法糖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var prefix = ‘foo’;</div><div class="line">var o = &#123;[prefix + ‘bar’]:’hello&apos;&#125;</div></pre></td></tr></table></figure>
+<h3 id="深入-3"><a href="#深入-3" class="headerlink" title="深入"></a>深入</h3><pre><code>忽略
+</code></pre><h2 id="解构赋值-Destructuring-Assignment"><a href="#解构赋值-Destructuring-Assignment" class="headerlink" title="解构赋值(Destructuring Assignment)"></a>解构赋值(Destructuring Assignment)</h2><h3 id="核心-4"><a href="#核心-4" class="headerlink" title="核心"></a>核心</h3><pre><code>让多个声明赋值更为精简，写法更加简单。
+</code></pre><h3 id="语法糖-4"><a href="#语法糖-4" class="headerlink" title="语法糖"></a>语法糖</h3><pre><code>ES6写法
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var &#123;foo,methodA&#125; = &#123;foo:’….’,methodA:function()&#123;….&#125;&#125;</div></pre></td></tr></table></figure>
+<pre><code>ES5写法
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var foo = ‘…..’,methodA = function()&#123;….&#125;;</div></pre></td></tr></table></figure>
+<h3 id="深入-4"><a href="#深入-4" class="headerlink" title="深入"></a>深入</h3><pre><code>忽略
+</code></pre><h2 id="参数默认值-Default-Parameters"><a href="#参数默认值-Default-Parameters" class="headerlink" title="参数默认值(Default Parameters)"></a>参数默认值(Default Parameters)</h2><h3 id="核心-5"><a href="#核心-5" class="headerlink" title="核心"></a>核心</h3><pre><code>终于有参数默认值了，省去了不必要的判断值类型的逻辑
+</code></pre><h3 id="语法糖-5"><a href="#语法糖-5" class="headerlink" title="语法糖"></a>语法糖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">function funA(x=2)&#123;console.log(x)&#125; // 2</div></pre></td></tr></table></figure>
+<h3 id="深入-5"><a href="#深入-5" class="headerlink" title="深入"></a>深入</h3><pre><code>忽略
+</code></pre><h2 id="迭代器-Iterators-And-For-Of"><a href="#迭代器-Iterators-And-For-Of" class="headerlink" title="迭代器(Iterators And For-Of)"></a>迭代器(Iterators And For-Of)</h2><h3 id="核心-6"><a href="#核心-6" class="headerlink" title="核心"></a>核心</h3><ul>
+<li>增强了for的能力，for原先虽然可以循环遍历数组但不是特别方便，必须通过定义局部增量作为索引进行数组项获取，有了for of简介多了。功能有点类似forEach的味道。</li>
+<li>同时也可通过Symbol单独定义迭代器，但是感觉写法上没有for of简介。</li>
+</ul>
+<h3 id="语法糖-6"><a href="#语法糖-6" class="headerlink" title="语法糖"></a>语法糖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for(let item of [1,2,3])&#123;console.log(item)&#125; // 1 2 3</div></pre></td></tr></table></figure>
+<h3 id="深入-6"><a href="#深入-6" class="headerlink" title="深入"></a>深入</h3><pre><code>忽略
+</code></pre><h2 id="类-Classes"><a href="#类-Classes" class="headerlink" title="类(Classes)"></a>类(Classes)</h2><h3 id="核心-7"><a href="#核心-7" class="headerlink" title="核心"></a>核心</h3><pre><code>从语义上更直观的理解类，这样更加利于类的使用和掌握。ES5的关于类的构建太过于抽象，理解成本比较高，理解的前提是需要弄明白原型链。
+</code></pre><h3 id="语法糖-7"><a href="#语法糖-7" class="headerlink" title="语法糖"></a>语法糖</h3><p>类的特征</p>
+<ul>
+<li>构造函数</li>
+<li>实例方法</li>
+<li>类方法</li>
+<li>类继承</li>
+<li>实例属性</li>
+<li>类属性</li>
+</ul>
+<p>ES6</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">class Hello &#123;</div><div class="line">  // 构造函数</div><div class="line">  constructor(name) &#123;</div><div class="line">    // 实例属性</div><div class="line">    this.name = name;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // 实例方法</div><div class="line">  hello() &#123;</div><div class="line">    return &apos;Hello &apos; + this.name + &apos;!&apos;;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // 类方法</div><div class="line">  static sayHelloAll() &#123;</div><div class="line">    return &apos;Hello everyone!&apos;;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 类属性</div><div class="line">Hello.prop = ’static prop’;</div><div class="line"></div><div class="line">// extends 类继承</div><div class="line">class HelloWorld extends Hello &#123;</div><div class="line">  constructor() &#123;</div><div class="line">    // 必须初始化</div><div class="line">    super(&apos;World&apos;);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  echo() &#123;</div><div class="line">    alert(super.hello());</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注：</p>
+<ul>
+<li>方法之间不需要逗号分隔，加了会报错</li>
+<li>ES6明确规定，Class内部只有静态方法，没有静态属性。</li>
+<li>子类必须在constructor方法中调用super方法，否则新建实例时会报错</li>
+<li>类内部方法不需要写function关键字</li>
+<li>ES6可以自定义原生数据结构（比如Array、String等）的子类，这是ES5无法做到的。</li>
+<li>extends关键字不仅可以用来继承类，还可以用来继承原生的构造函数。</li>
+</ul>
+<p>ES5的写法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">// 构造函数</div><div class="line">function Hello(name) &#123;</div><div class="line">  this.name = name;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 实例方法</div><div class="line">Hello.prototype.hello = function hello() &#123;</div><div class="line">  return &apos;Hello &apos; + this.name + &apos;!&apos;;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">// 类方法</div><div class="line">Hello.sayHelloAll = function () &#123;</div><div class="line">  return &apos;Hello everyone!&apos;;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">// 类属性</div><div class="line">Hello.prop = ‘static prop’;</div><div class="line"></div><div class="line">// 初始化父类</div><div class="line">function HelloWorld() &#123;</div><div class="line">  Hello.call(this, &apos;World&apos;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 实例方法和属性继承</div><div class="line">HelloWorld.prototype = Object.create(Hello.prototype);</div><div class="line">HelloWorld.prototype.constructor = HelloWorld;</div><div class="line"></div><div class="line">// 类方法继承</div><div class="line">HelloWorld.sayHelloAll = Hello.sayHelloAll;</div><div class="line"></div><div class="line">// 类属性继承</div><div class="line">HelloWorld.prop = Hello.prop;</div><div class="line"></div><div class="line">HelloWorld.prototype.echo = function echo() &#123;</div><div class="line">  alert(Hello.prototype.hello.call(this));</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="模块-Module"><a href="#模块-Module" class="headerlink" title="模块(Module)"></a>模块(Module)</h2><h3 id="核心-8"><a href="#核心-8" class="headerlink" title="核心"></a>核心</h3><pre><code>javascript终于有了自己的模块化方案了，本质上与社区里的AMD、CommonJS的目标一致。
+</code></pre><h3 id="语法糖-8"><a href="#语法糖-8" class="headerlink" title="语法糖"></a>语法糖</h3><ul>
+<li><p>输出模块接口(export)</p>
+<ul>
+<li><p>四种方式</p>
+<ul>
+<li>写法一 <code>export var m = 1</code>;</li>
+<li>写法二 <code>var m = 1; export {m}</code>;</li>
+<li>写法三 <code>var n = 1; export {n as m}</code>;</li>
+<li><p>写法四(默认输出接口)</p>
+<ul>
+<li><code>export default function(){….}</code> // 匿名有效</li>
+<li><code>export default function A(){….}</code> // 同样有效的<pre><code>注：
+</code></pre></li>
+</ul>
+</li>
+<li><p>m或者n可以是基础类型、函数(非匿名)、对象、class等</p>
+</li>
+<li>可支持多个数据类型输出</li>
+<li>export default只能使用一次</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>获取模块接口(import)</p>
+<ul>
+<li><p>两种方式</p>
+<ul>
+<li>局部加载：<code>import { m } from &#39;my_module’</code>; // 直接拿m用</li>
+<li>全局加载：<code>import * as obj from &#39;my_module’</code>; // 需要obj.m使用</li>
+<li><p>默认加载(针对export default)：<code>import m from &#39;my_module&#39;</code>;<br>  注：正因为有默认加载，很多第三方库，可在不知道输出接口名称的前提下直接使用，例如 import _ from ‘lodash’;</p>
+<p>注：</p>
+</li>
+<li><p>如果仅仅是加载执行某个模块，例如 <code>import &#39;lodash&#39;</code>;</p>
+</li>
+<li>两种情况下，import不需要大括号<ul>
+<li>全局加载</li>
+<li>默认加载</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>模块可继承</p>
+<ul>
+<li>直接在定需要继承的模块里 <code>export * form ‘my_module&#39;</code></li>
+</ul>
+</li>
+</ul>
+<p>注：</p>
+<ul>
+<li>浏览器目前还不支持ES6模块</li>
+</ul>
+<h3 id="深入-7"><a href="#深入-7" class="headerlink" title="深入"></a>深入</h3><ul>
+<li>ES6模块加载机制</li>
+<li>与CommonJS和AMD的区别</li>
+</ul>
+<p>数值字面量(Numeric Literals)类型增加</p>
+<h3 id="核心-9"><a href="#核心-9" class="headerlink" title="核心"></a>核心</h3><pre><code>在es5且非严格模式下允许使用0作为前缀表示八进制，但在严格模式下是不支持的。而在ES6中，通过指定前缀可表示二进制和八进制
+</code></pre><h3 id="语法糖-9"><a href="#语法糖-9" class="headerlink" title="语法糖"></a>语法糖</h3><ul>
+<li>二进制 (前缀0b)</li>
+<li>八进制(前缀0o)</li>
+</ul>
+<h3 id="深入-8"><a href="#深入-8" class="headerlink" title="深入"></a>深入</h3><ul>
+<li>应用场景</li>
+</ul>
+<p>语法糖之定义对象方法(Property Method Assignment)</p>
+<h3 id="核心-10"><a href="#核心-10" class="headerlink" title="核心"></a>核心</h3><pre><code>对象方法的另一种写法，不过直观上不好理解。
+</code></pre><p>语法糖</p>
+<p>ES6：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var person = &#123;</div><div class="line">    sayName() &#123;</div><div class="line">        console.log(this.name);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>ES5：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var person = &#123;</div><div class="line">    sayName: function()&#123;</div><div class="line">        console.log(this.name);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="深入："><a href="#深入：" class="headerlink" title="深入："></a>深入：</h3><pre><code>忽略
+</code></pre><h2 id="语法糖之字面量创建对象-Object-Initializer-Shorthand"><a href="#语法糖之字面量创建对象-Object-Initializer-Shorthand" class="headerlink" title="语法糖之字面量创建对象(Object Initializer Shorthand)"></a>语法糖之字面量创建对象(Object Initializer Shorthand)</h2><h3 id="核心-11"><a href="#核心-11" class="headerlink" title="核心"></a>核心</h3><pre><code>忽略
+</code></pre><p>语法糖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var x = 2,y = 3;</div><div class="line">var obj = &#123;x,y&#125; ; // var obj = &#123;x:x;y:y&#125;;</div></pre></td></tr></table></figure>
+<h3 id="深入-9"><a href="#深入-9" class="headerlink" title="深入"></a>深入</h3><pre><code>忽略
+</code></pre><h2 id="语法糖之函数参数个数不确定-Rest-Parameters"><a href="#语法糖之函数参数个数不确定-Rest-Parameters" class="headerlink" title="语法糖之函数参数个数不确定(Rest Parameters)"></a>语法糖之函数参数个数不确定(Rest Parameters)</h2><h3 id="核心-12"><a href="#核心-12" class="headerlink" title="核心"></a>核心</h3><pre><code>ES5中如果遇到这种情况，需要借助apply进行转换。而ES6中直接通过...实现不确定参数到数组的默认转换，节省了手动转换过程，使代码更为简洁。
+</code></pre><h3 id="语法糖-10"><a href="#语法糖-10" class="headerlink" title="语法糖"></a>语法糖</h3><p>ES6</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function f(x, ...y) &#123;</div><div class="line">  // y is an Array</div><div class="line">  return x * y.length;</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(f(3, &apos;hello&apos;, true) === 6);</div></pre></td></tr></table></figure>
+<p>ES5</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&apos;use strict&apos;;</div><div class="line"></div><div class="line">function f(x) &#123;</div><div class="line">  var y = [];</div><div class="line">  y.push.apply(y, arguments) &amp;&amp; y.shift();</div><div class="line"></div><div class="line">  // y is an Array</div><div class="line">  return x * y.length;</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(f(3, &apos;hello&apos;, true) === 6);</div><div class="line">// -&gt; true</div></pre></td></tr></table></figure>
+<h2 id="语法糖之数组自动拆解为实参列表-Spread-Operator"><a href="#语法糖之数组自动拆解为实参列表-Spread-Operator" class="headerlink" title="语法糖之数组自动拆解为实参列表(Spread Operator)"></a>语法糖之数组自动拆解为实参列表(Spread Operator)</h2><h3 id="核心-13"><a href="#核心-13" class="headerlink" title="核心"></a>核心</h3><pre><code>当函数的参数是固定的，但是传入的参数却是一个数组，通常我们需要通过索引来获取参数对应的项并传入。但是有了...操作符就好办了，她自动会拆解数组为参数列表。
+</code></pre><h3 id="语法糖-11"><a href="#语法糖-11" class="headerlink" title="语法糖"></a>语法糖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var arrs = [1,2];</div><div class="line">function funA(a,b)&#123;&#125;</div><div class="line">funA(…arrs); // …arrs其实做了到 1,2的转换。</div></pre></td></tr></table></figure>
+<p>不过这边你要注意，如果…应用在非函数参数之外，行为就比较难理解了。例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.log(…[1,2]) // 输出 1 2 注：中间没有逗号。</div></pre></td></tr></table></figure>
+<p>ES5</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&apos;use strict&apos;;</div><div class="line"></div><div class="line">function f(x, y, z) &#123;</div><div class="line">  return x + y + z;</div><div class="line">&#125;</div><div class="line">// Pass each elem of array as argument</div><div class="line">f.apply(null, [1, 2, 3]) === 6;</div></pre></td></tr></table></figure>
+<p>注：其实apply做了类似…操作以后的效果，只不过她比…功能更丰富。</p>
+<h3 id="深入-10"><a href="#深入-10" class="headerlink" title="深入"></a>深入</h3><pre><code>忽略
+</code></pre><p>类数组对象转数组(Array-like object to array)</p>
+<h3 id="核心-14"><a href="#核心-14" class="headerlink" title="核心"></a>核心</h3><pre><code>常见的类数组对象再也不用[].slice.call()方法来转换了(真的不好理解，而且也不友好)，现在只要Array.from便可了。
+</code></pre><h3 id="语法糖-12"><a href="#语法糖-12" class="headerlink" title="语法糖"></a>语法糖</h3><pre><code>忽略
+</code></pre><p>注：<br>     常见类数组对象</p>
+<pre><code>- arguments
+- NodeList
+</code></pre><h3 id="深入-11"><a href="#深入-11" class="headerlink" title="深入"></a>深入</h3><pre><code>忽略
+</code></pre><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://github.com/addyosmani/es6-equivalents-in-es5#computed-property-names" target="_blank" rel="external">ECMAScript 6 equivalents in ES5</a></li>
+<li><a href="http://es6.ruanyifeng.com/" target="_blank" rel="external">ECMAScript 6 入门 By 阮一峰</a></li>
+</ul>
+</div><script type="text/javascript" src="/js/share.js?v=1.0.0" async></script><a data-url="http://techbirds.wang/2016/11/30/掌握ES6的语法糖/" data-id="ciw4ptx9u00095zjwmhtubh11" class="article-share-link">分享到</a><div class="tags"></div><div class="post-nav"><a href="/2016/11/29/Git最佳实践/" class="next">Git最佳实践</a></div><div data-thread-key="2016/11/30/掌握ES6的语法糖/" data-title="掌握ES6的语法糖" data-url="http://techbirds.wang/2016/11/30/掌握ES6的语法糖/" class="ds-share flat"><div class="ds-share-inline"><ul class="ds-share-icons-16"><li data-toggle="ds-share-icons-more"><a href="javascript:void(0);" class="ds-more">分享到：</a></li><li><a href="javascript:void(0);" data-service="weibo" class="ds-weibo">微博</a></li><li><a href="javascript:void(0);" data-service="qzone" class="ds-qzone">QQ空间</a></li><li><a href="javascript:void(0);" data-service="qqt" class="ds-qqt">腾讯微博</a></li><li><a href="javascript:void(0);" data-service="wechat" class="ds-wechat">微信</a></li></ul><div class="ds-share-icons-more"></div></div></div><div data-thread-key="2016/11/30/掌握ES6的语法糖/" data-title="掌握ES6的语法糖" data-url="http://techbirds.wang/2016/11/30/掌握ES6的语法糖/" data-author-key="1" class="ds-thread"></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Http/">Http</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其它/">其它</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/码农感悟/">码农感悟</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/BFC/" style="font-size: 15px;">BFC</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/码农感悟/" style="font-size: 15px;">码农感悟</a> <a href="/tags/float/" style="font-size: 15px;">float</a> <a href="/tags/clear/" style="font-size: 15px;">clear</a> <a href="/tags/git-flow/" style="font-size: 15px;">git flow</a> <a href="/tags/Http1-x/" style="font-size: 15px;">Http1.x</a> <a href="/tags/Https/" style="font-size: 15px;">Https</a> <a href="/tags/UTF-8/" style="font-size: 15px;">UTF-8</a> <a href="/tags/Unicode/" style="font-size: 15px;">Unicode</a> <a href="/tags/ASCII/" style="font-size: 15px;">ASCII</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.zhangxinxu.com/" title="张鑫旭" target="_blank">张鑫旭</a><ul></ul><a href="http://www.ruanyifeng.com/blog/" title="阮一峰" target="_blank">阮一峰</a><ul></ul><a href="http://blog.cssforest.org/" title="鬼哥" target="_blank">鬼哥</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">  Copyright © 2015-2016 techbirds.wang </div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=1.0.0"><script>var duoshuoQuery = {short_name:'techbirds-wang'};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
