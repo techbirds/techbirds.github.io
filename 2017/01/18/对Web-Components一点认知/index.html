@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>对Web Components一点认知 | 踏心</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">对Web Components一点认知</h1><a id="logo" href="/.">踏心</a><p class="description">主要用于记录学习前端相关的重构、架构、算法和设计等方面的笔记</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">对Web Components一点认知</h1><div class="post-meta">Jan 18, 2017<span> | </span><span class="category"><a href="/categories/组件化/">组件化</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><h2 id="Template"><a href="#Template" class="headerlink" title="Template"></a>Template</h2><h3 id="使用层面"><a href="#使用层面" class="headerlink" title="使用层面"></a>使用层面</h3><ol>
+<li>获取模板</li>
+<li>添加模板到指定节点</li>
+</ol>
+<h3 id="认知层面"><a href="#认知层面" class="headerlink" title="认知层面"></a>认知层面</h3><p>这个有点类似script标签来定义可复用的模板,只不过现在有个专门的标签来表示模板了。不过在我看来是一个东西。但是看到template不仅仅可以定义html。<br>尽然还可以内嵌样式。</p>
+<p>有点疑惑:</p>
+<ol>
+<li>内嵌样式是局部作用的吗?<ul>
+<li>全局污染的</li>
+</ul>
+</li>
+<li>script方式可以定义样式吗,局部作用域(不污染全局)的吗?<ul>
+<li>可以定义样式,type需要自定义,否则会报错</li>
+<li>全局污染的</li>
+</ul>
+</li>
+</ol>
+<p>小结: 起码到现在为止通过实例更加肯定了这货没什么特别的,说到底是跟script来定义模板。是一个东西。如果硬要说有差别:</p>
+<ol>
+<li>使用接口上略有不同</li>
+<li>定义方式上略有不同</li>
+</ol>
+<h2 id="Custom-Element-自定义元素"><a href="#Custom-Element-自定义元素" class="headerlink" title="Custom Element(自定义元素)"></a>Custom Element(自定义元素)</h2><p>很显然从直观上理解这东东,很容易让人与现在使用MVV*框架定义组件来作比较。</p>
+<h3 id="MVV-组件化"><a href="#MVV-组件化" class="headerlink" title="MVV*组件化"></a>MVV*组件化</h3><h4 id="先来谈谈相对比较熟悉的MVV-组件化的优势"><a href="#先来谈谈相对比较熟悉的MVV-组件化的优势" class="headerlink" title="先来谈谈相对比较熟悉的MVV*组件化的优势:"></a>先来谈谈相对比较熟悉的MVV*组件化的优势:</h4><ol>
+<li>页面的可读性增强</li>
+<li>代码的复用性增强</li>
+</ol>
+<h4 id="相反-劣势"><a href="#相反-劣势" class="headerlink" title="相反,劣势:"></a>相反,劣势:</h4><p>很简单就是不跨框架。不够通用。因为组件化的方式并非是标准。</p>
+<h4 id="谈谈MVV-组件话需要处理的几个核心方面"><a href="#谈谈MVV-组件话需要处理的几个核心方面" class="headerlink" title="谈谈MVV*组件话需要处理的几个核心方面:"></a>谈谈MVV*组件话需要处理的几个核心方面:</h4><ol>
+<li>组件之间的通信</li>
+<li>组件的行为和事件</li>
+<li>组件之间的嵌套</li>
+<li>组件的生命周期</li>
+</ol>
+<h4 id="从MVV-组成的角度来看看有哪些部分组成"><a href="#从MVV-组成的角度来看看有哪些部分组成" class="headerlink" title="从MVV*组成的角度来看看有哪些部分组成:"></a>从MVV*组成的角度来看看有哪些部分组成:</h4><ol>
+<li>javascript</li>
+<li>html</li>
+<li>css</li>
+</ol>
+<h3 id="Custom-Element"><a href="#Custom-Element" class="headerlink" title="Custom Element"></a>Custom Element</h3><h4 id="认知层面-1"><a href="#认知层面-1" class="headerlink" title="认知层面:"></a>认知层面:</h4><p>似乎Custom Element是基于原生HTMLElement的,扩展了对应的接口。</p>
+<h4 id="那我们先来分析原生HTMLElement-看看有哪些接口"><a href="#那我们先来分析原生HTMLElement-看看有哪些接口" class="headerlink" title="那我们先来分析原生HTMLElement,看看有哪些接口:"></a>那我们先来分析原生HTMLElement,看看有哪些接口:</h4><ol>
+<li>行为和事件 -&gt; action 和 onclick、mouseover…</li>
+<li>具备生命周期的回调函数.</li>
+</ol>
+<p>以上也是Custom Element可扩展的地方。</p>
+<p>看到这里,我感觉自定义元素的出发点无非是使得原生元素变得可继承。现在看它能为组件化出多大力,我是没看出半点来。</p>
+<p>小结: Custom Element可能在使用上与MVV*定义的组件有极为相似的一点(注意措辞,一点)。但是说到底两个的出发点是截然不同的。无论是组成还是使用场景。。</p>
+<h2 id="Shadow-Dom"><a href="#Shadow-Dom" class="headerlink" title="Shadow Dom"></a>Shadow Dom</h2><p>影子dom? 好吧从名称上是看不出任何其想要解决组件化的决心。</p>
+<p>看到这里才明白,无论是Shadow Dom还是Custom Element还是Template都是为了实现标准组件化的基础。与MVV*组件化对比得深刻理解了这些基础,再作总结对比。</p>
+<p>Shadow DOM解决了将一个dom节点变成由css + js + html组成的节点。严格来讲是(Template + Shadow Dom)的组合达到了这样的效果,且样式不是全局污染的。现在很多MVV*组件化中css虽然是物理、逻辑分离的,但是仍旧是全局<br>污染的。从这角度看,这样的组件化是存在一定瑕疵的。</p>
+<p>小结: Shadow DOM说到底也是dom的一种类型节点,无非这种节点更高级,可以包含js、html、css。这位组件的标准化奠定了一定基础。</p>
+<h2 id="Import-HTML"><a href="#Import-HTML" class="headerlink" title="Import HTML"></a>Import HTML</h2><p>不深究,肤浅的认识两点:</p>
+<ol>
+<li>导入HTML可以包含js\html\css的「组件」</li>
+<li>可以不需要js来加载html了,只需要定义<code>&lt;link rel=&quot;import&quot; href=&quot;dialog.html&quot;&gt;</code>这些形式便可。</li>
+</ol>
+<h2 id="Web-Component"><a href="#Web-Component" class="headerlink" title="Web Component"></a>Web Component</h2><blockquote>
+<p>Template + Custom Element + Shadow Dom + Import HTML = Web Component  ?</p>
+</blockquote>
+<p>从<a href="http://javascript.ruanyifeng.com/htmlapi/webcomponents.html#toc9" target="_blank" rel="external">Web Components</a>最后一个实例来看,可以看出这几种技术的组合产生了神奇的效果。标准的组件化并非不切实际。只不过由于本文缺少典型的实例,缺少了对其进一步认知的机会,当然也由于篇幅有限,对Web Components的理解先止于此。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>Template : 定义模板,模板可包含css、js、html,当然如果组件化,物理的划分通常不会以template而是以html文件。</li>
+<li>Custom Element : 单独搞,确实没什么意义,但如果与Shadow DOM和Template结合,就很酷了,说通俗点可以自定一个dom节点包含了css\js\html而且还是局部的,无侵入的。</li>
+<li>Shadow DOM : 牛逼,可以让一个节点抽象成挂载了js/html/css。啥也不说了。</li>
+<li>Import HTML : 组件化的粒度通常是比较大的,这里其实可以看出最小的组件粒度就是html文件。而且使用了import方式,非常方便、灵活。</li>
+</ul>
+<p>BTW: 接下来就是实践了,希望能够加深对Web Components的理解。</p>
+</div><script type="text/javascript" src="/js/share.js?v=1.0.0" async></script><a data-url="http://techbirds.wang/2017/01/18/对Web-Components一点认知/" data-id="ciy2osu2y0009gdjwrlpyo5ro" class="article-share-link">分享到</a><div class="tags"></div><div class="post-nav"><a href="/2017/01/03/对技术决策的一点认知/" class="next">对技术决策的一点认知</a></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Http/">Http</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其它/">其它</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/码农感悟/">码农感悟</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/组件化/">组件化</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/clear/" style="font-size: 15px;">clear</a> <a href="/tags/码农感悟/" style="font-size: 15px;">码农感悟</a> <a href="/tags/git-flow/" style="font-size: 15px;">git flow</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/ECMAScript-6/" style="font-size: 15px;">ECMAScript 6</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/float/" style="font-size: 15px;">float</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/BFC/" style="font-size: 15px;">BFC</a> <a href="/tags/Http1-x/" style="font-size: 15px;">Http1.x</a> <a href="/tags/Https/" style="font-size: 15px;">Https</a> <a href="/tags/UTF-8/" style="font-size: 15px;">UTF-8</a> <a href="/tags/Unicode/" style="font-size: 15px;">Unicode</a> <a href="/tags/ASCII/" style="font-size: 15px;">ASCII</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.zhangxinxu.com/" title="张鑫旭" target="_blank">张鑫旭</a><ul></ul><a href="http://www.ruanyifeng.com/blog/" title="阮一峰" target="_blank">阮一峰</a><ul></ul><a href="http://blog.cssforest.org/" title="鬼哥" target="_blank">鬼哥</a><ul></ul><a href="http://mindhacks.cn/" title="刘未鹏" target="_blank">刘未鹏</a><ul></ul><a href="http://www.w3cplus.com/" title="大漠" target="_blank">大漠</a><ul></ul><a href="https://lifesinger.wordpress.com/" title="岁月如歌" target="_blank">岁月如歌</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">  Copyright © 2015-2016 techbirds.wang </div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
